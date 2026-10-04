@@ -2,8 +2,8 @@
   "schema": 1,
   "courseId": 2074,
   "repository": "LearningOS/2026a-oscamp-base-laoba-01",
-  "commit": "69a768423ff4103ea393598b93377c3fe4e63a15",
-  "score": 19,
+  "commit": "4014c283c7d171756750e834b274133a5149b1d3",
+  "score": 24,
   "totalScore": 100,
   "exercises": [
     {
@@ -44,9 +44,9 @@
     {
       "name": "bump_allocator",
       "max": 5,
-      "score": 0,
-      "status": "fail",
-      "exitCode": 101
+      "score": 5,
+      "status": "pass",
+      "exitCode": 0
     },
     {
       "name": "free_list_allocator",
@@ -176,9 +176,9 @@
     }
   ],
   "student": "laoba-01",
-  "runId": "37202055559",
+  "runId": "37203715663",
   "runAttempt": "1",
   "upload": {
-    "status": "accepted"
+    "status": "pending"
   }
 }
