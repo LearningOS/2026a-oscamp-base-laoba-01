@@ -2,7 +2,7 @@
   "schema": 1,
   "courseId": 2074,
   "repository": "LearningOS/2026a-oscamp-base-laoba-01",
-  "commit": "565cba9641d234dd757f92576a702a519d2198c5",
+  "commit": "94e2a595b6320692cefdf4264bde06fd704f585b",
   "score": 29,
   "totalScore": 100,
   "exercises": [
@@ -176,9 +176,9 @@
     }
   ],
   "student": "laoba-01",
-  "runId": "37207551833",
+  "runId": "37301874616",
   "runAttempt": "1",
   "upload": {
-    "status": "accepted"
+    "status": "pending"
   }
 }
