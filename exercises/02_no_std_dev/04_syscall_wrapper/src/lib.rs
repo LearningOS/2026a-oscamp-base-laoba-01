@@ -53,23 +53,50 @@ pub struct SyscallABI {
 
 /// Return the x86_64 Linux syscall ABI description
 pub fn x86_64_abi() -> SyscallABI {
-    // TODO: Fill in the x86_64 syscall ABI
-    // Hint: x86_64 uses the "syscall" instruction, syscall number in rax
-    todo!()
+    SyscallABI{
+    arch: "x86_64",
+    instruction:"syscall",
+    id_reg: "rax",
+    ret_reg: "rax",
+    arg_regs: &["rdi","rsi","rdx","r10","r8","r9"],
+    clobbered: &["rcx","r11"],
+    sys_write: 1,
+    sys_read: 0,
+    sys_close: 3,
+    sys_exit: 60,
+    }
 }
 
 /// Return the aarch64 Linux syscall ABI description
 pub fn aarch64_abi() -> SyscallABI {
-    // TODO: Fill in the aarch64 syscall ABI
-    // Hint: aarch64 uses the "svc #0" instruction, syscall number in x8
-    todo!()
+    SyscallABI{
+      arch: "aarch64",
+      instruction: "svc #0",
+      id_reg: "x8",
+      ret_reg: "x0",
+      arg_regs: &["x0","x1","x2","x3","x4","x5"],
+      clobbered: &[],
+      sys_write: 64,
+      sys_read: 63,
+      sys_close: 57,
+      sys_exit: 93,
+    }
 }
 
 /// Return the riscv64 Linux syscall ABI description
 pub fn riscv64_abi() -> SyscallABI {
-    // TODO: Fill in the riscv64 syscall ABI
-    // Hint: riscv64 uses the "ecall" instruction, syscall number in a7
-    todo!()
+      SyscallABI {
+        arch: "riscv64",
+        instruction: "ecall",
+        id_reg: "a7",
+        ret_reg: "a0",
+        arg_regs: &["a0", "a1", "a2", "a3", "a4", "a5"],
+        clobbered: &[],
+        sys_write: 64,
+        sys_read: 63,
+        sys_close: 57,
+        sys_exit: 93,
+    }
 }
 
 // ============================================================
@@ -82,24 +109,37 @@ pub fn riscv64_abi() -> SyscallABI {
 /// The caller must ensure the syscall number and arguments are valid.
 #[cfg(all(target_arch = "x86_64", target_os = "linux"))]
 pub unsafe fn syscall3(id: usize, arg0: usize, arg1: usize, arg2: usize) -> isize {
-    // TODO: Implement x86_64 syscall using core::arch::asm!
-    // Hints:
-    //   - "syscall" instruction
-    //   - inlateout("rax") id => ret
-    //   - in("rdi") arg0, in("rsi") arg1, in("rdx") arg2
-    //   - out("rcx") _, out("r11") _
-    todo!()
-}
+ let ret: isize;
 
+    unsafe {
+        core::arch::asm!(
+            "syscall",
+            inlateout("rax") id as isize => ret,
+            in("rdi") arg0,
+            in("rsi") arg1,
+            in("rdx") arg2,
+            out("rcx") _,
+            out("r11") _,
+        );
+}
+ret 
+}
 #[cfg(all(target_arch = "aarch64", target_os = "linux"))]
 pub unsafe fn syscall3(id: usize, arg0: usize, arg1: usize, arg2: usize) -> isize {
-    // TODO: Implement aarch64 syscall using core::arch::asm!
-    // Hints:
-    //   - "svc #0" instruction
-    //   - in("x8") id
-    //   - inlateout("x0") arg0 => ret
-    //   - in("x1") arg1, in("x2") arg2
-    todo!()
+     
+    let ret: isize;
+
+    unsafe {
+        core::arch::asm!(
+            "svc #0",
+            in("x8") id,
+            inlateout("x0") arg0 as isize => ret,
+            in("x1") arg1,
+            in("x2") arg2,
+        );
+    }
+
+    ret
 }
 
 // Non-Linux platforms: provide a stub so the code compiles
