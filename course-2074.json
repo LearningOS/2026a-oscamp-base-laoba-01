@@ -2,8 +2,8 @@
   "schema": 1,
   "courseId": 2074,
   "repository": "LearningOS/2026a-oscamp-base-laoba-01",
-  "commit": "94e2a595b6320692cefdf4264bde06fd704f585b",
-  "score": 29,
+  "commit": "3c350b6535ebf3893592faec3b81eab0db136471",
+  "score": 34,
   "totalScore": 100,
   "exercises": [
     {
@@ -58,9 +58,9 @@
     {
       "name": "syscall_wrapper",
       "max": 5,
-      "score": 0,
-      "status": "fail",
-      "exitCode": 101
+      "score": 5,
+      "status": "pass",
+      "exitCode": 0
     },
     {
       "name": "fd_table",
@@ -176,9 +176,9 @@
     }
   ],
   "student": "laoba-01",
-  "runId": "37301874616",
+  "runId": "37302630352",
   "runAttempt": "1",
   "upload": {
-    "status": "accepted"
+    "status": "pending"
   }
 }
