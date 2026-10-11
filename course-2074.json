@@ -2,8 +2,8 @@
   "schema": 1,
   "courseId": 2074,
   "repository": "LearningOS/2026a-oscamp-base-laoba-01",
-  "commit": "dbb052d3748acd9db4158025ef7952f73095bcfb",
-  "score": 39,
+  "commit": "b276fffe00e8d26925ed9f85fb8c38edaf7e0d46",
+  "score": 43,
   "totalScore": 100,
   "exercises": [
     {
@@ -72,9 +72,9 @@
     {
       "name": "atomic_counter",
       "max": 4,
-      "score": 0,
-      "status": "fail",
-      "exitCode": 101
+      "score": 4,
+      "status": "pass",
+      "exitCode": 0
     },
     {
       "name": "atomic_ordering",
@@ -176,9 +176,9 @@
     }
   ],
   "student": "laoba-01",
-  "runId": "37306767561",
+  "runId": "38142682465",
   "runAttempt": "1",
   "upload": {
-    "status": "accepted"
+    "status": "pending"
   }
 }
