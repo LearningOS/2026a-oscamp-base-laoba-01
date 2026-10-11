@@ -2,8 +2,8 @@
   "schema": 1,
   "courseId": 2074,
   "repository": "LearningOS/2026a-oscamp-base-laoba-01",
-  "commit": "b276fffe00e8d26925ed9f85fb8c38edaf7e0d46",
-  "score": 43,
+  "commit": "4d60280c24d5fa0e1d6227116346ed425d059c10",
+  "score": 47,
   "totalScore": 100,
   "exercises": [
     {
@@ -79,9 +79,9 @@
     {
       "name": "atomic_ordering",
       "max": 4,
-      "score": 0,
-      "status": "fail",
-      "exitCode": 101
+      "score": 4,
+      "status": "pass",
+      "exitCode": 0
     },
     {
       "name": "spinlock",
@@ -176,9 +176,9 @@
     }
   ],
   "student": "laoba-01",
-  "runId": "38142682465",
+  "runId": "38148614085",
   "runAttempt": "1",
   "upload": {
-    "status": "accepted"
+    "status": "pending"
   }
 }
