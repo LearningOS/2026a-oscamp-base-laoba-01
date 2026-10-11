@@ -44,15 +44,14 @@ pub fn concurrent_counter(n_threads: usize, count_per_thread: usize) -> usize {
 /// Hint: Use `Arc<Mutex<Vec<usize>>>`.
 pub fn concurrent_collect(n_threads: usize) -> Vec<usize> {
     let shared = Arc::new(Mutex::new(Vec::new()));
-    let mut handles = Vec::new();
+   let mut handles = Vec::new();
 
-    for id in 0..n_threads {
-        let shared = Arc::clone(&shared);
-        handles.push(thread::spawn(move || {
-            shared.lock().unwrap().push(id);
-        }));
-    }
-
+      for id in 0..n_threads {
+          let shared = Arc::clone(&shared);
+          handles.push(thread::spawn(move || {
+              shared.lock().unwrap().push(id);
+          }));
+      }
     for handle in handles {
         handle.join().unwrap();
     }
@@ -75,6 +74,8 @@ mod tests {
     fn test_counter_multi_thread() {
         assert_eq!(concurrent_counter(10, 100), 1000);
     }
+
+
 
     #[test]
     fn test_counter_zero() {
