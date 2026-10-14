@@ -2,8 +2,8 @@
   "schema": 1,
   "courseId": 2074,
   "repository": "LearningOS/2026a-oscamp-base-laoba-01",
-  "commit": "214d88987fdb2b32d0c1f9a77206c89be1a279f1",
-  "score": 60,
+  "commit": "4b3bed447ee42ffd11d49bfecba36ade299c7428",
+  "score": 63,
   "totalScore": 100,
   "exercises": [
     {
@@ -149,9 +149,9 @@
     {
       "name": "pte_flags",
       "max": 3,
-      "score": 0,
-      "status": "fail",
-      "exitCode": 101
+      "score": 3,
+      "status": "pass",
+      "exitCode": 0
     },
     {
       "name": "page_table_walk",
@@ -176,9 +176,9 @@
     }
   ],
   "student": "laoba-01",
-  "runId": "38152764371",
+  "runId": "38561789778",
   "runAttempt": "1",
   "upload": {
-    "status": "accepted"
+    "status": "pending"
   }
 }
