@@ -15,23 +15,50 @@ use tokio::sync::mpsc;
 ///
 /// Hint: Set channel capacity to items.len().max(1)
 pub async fn producer_consumer(items: Vec<String>) -> Vec<String> {
-    // TODO: Create channel with mpsc::channel
-    // TODO: Spawn producer task: iterate through items, send each one
-    // TODO: Spawn consumer task: loop recv until channel closes, collect results
-    // TODO: Wait for consumer to complete and return results
-    todo!()
+    let (tx, mut rx) = mpsc::channel(items.len().max(1));
+
+    tokio::spawn(async move {
+        for item in items {
+            // The receiver can't go away before we finish, but don't panic if it does.
+            if tx.send(item).await.is_err() {
+                break;
+            }
+        }
+        // `tx` is dropped here, which is what closes the channel.
+    });
+
+    // The consumer stays on this task; `recv` returns None once every sender is gone.
+    let mut collected = Vec::new();
+    while let Some(item) = rx.recv().await {
+        collected.push(item);
+    }
+    collected
 }
 
 /// Fan‑in pattern: multiple producers, one consumer.
 /// Create `n_producers` producers, each sending `"producer {id}: message"`.
 /// Consumer collects all messages, sorts them, and returns.
 pub async fn fan_in(n_producers: usize) -> Vec<String> {
-    // TODO: Create mpsc channel
-    // TODO: Spawn n_producers producer tasks
-    //       Each sends format!("producer {id}: message")
-    // TODO: Drop the original sender (important! otherwise channel won't close)
-    // TODO: Consumer loops receiving, collects and sorts
-    todo!()
+    let (tx, mut rx) = mpsc::channel(n_producers.max(1));
+
+    for id in 0..n_producers {
+        let tx = tx.clone();
+        tokio::spawn(async move {
+            let _ = tx.send(format!("producer {id}: message")).await;
+        });
+    }
+
+    // Drop our own sender. Each task holds a clone, so the channel only closes
+    // once this one *and* all the clones are gone -- skipping this drop hangs
+    // the recv loop forever.
+    drop(tx);
+
+    let mut collected = Vec::new();
+    while let Some(msg) = rx.recv().await {
+        collected.push(msg);
+    }
+    collected.sort();
+    collected
 }
 
 #[cfg(test)]
